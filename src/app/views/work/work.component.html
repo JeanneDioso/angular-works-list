@@ -1,0 +1,35 @@
+<div class="container">
+    <form class="form">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Search</mat-label>
+            <input matInput [(ngModel)]="searchInput" (change)="getData(searchInput)" name="searchInput">
+            <button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-progress-bar mode="query" *ngIf="isLoading"></mat-progress-bar>
+    </form>
+
+    <div>
+        <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let item of data.items">
+                <mat-card class="example-card" (click)="viewArticle(item)">
+                    <mat-card-title>{{ item["container-title"]}}</mat-card-title>
+                    <mat-card-subtitle>Publisher: {{ item.publisher }}</mat-card-subtitle>
+                    <mat-card-content>
+                        <p>{{ item.title }}</p>
+                        <p>Authors:{{ getAuthors(item.author) }} </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <mat-chip-list aria-label="Fish selection">
+                            <mat-chip selected color="primary" *ngFor="let sub of makeUnique(item.subject)">{{sub}}</mat-chip>
+                        </mat-chip-list>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+    <mat-paginator [length]="data['total-results']" [pageSize]="data['items-per-page']" [pageSizeOptions]="[5, 10, 25, 100]" (page)="pagedDate($event)" aria-label="Select page">
+    </mat-paginator>
+</div>

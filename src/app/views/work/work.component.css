@@ -1,0 +1,27 @@
+.container {
+    margin: 20px;
+}
+
+.container .form mat-form-field {
+    width: 100%;
+}
+
+mat-progress-bar {
+    margin-top: -21px;
+}
+
+mat-paginator {
+    position: fixed;
+    width: 96%;
+    bottom: 0;
+    background: white;
+}
+
+mat-card {
+    width: 90%;
+    height: 85%;
+    cursor: pointer;
+    max-height: 80%;
+    overflow-y: overlay;
+    background-color: white;
+}
